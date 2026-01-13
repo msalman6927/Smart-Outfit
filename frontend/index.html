@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Outfit - Weather-Based Wardrobe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Login/Signup Overlay -->
+        <div id="auth-screen" class="screen">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Smart Outfit</h1>
+                    <p>Your weather-ready wardrobe assistant</p>
+                </div>
+                <div id="login-form" class="auth-box">
+                    <h2>Login</h2>
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button onclick="handleLogin()" class="btn-primary">Login</button>
+                    <p class="auth-toggle">Don't have an account? <a href="#" onclick="toggleAuth()">Sign Up</a></p>
+                </div>
+                <div id="signup-form" class="auth-box hidden">
+                    <h2>Sign Up</h2>
+                    <input type="text" id="signup-name" placeholder="Full Name" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button onclick="handleSignup()" class="btn-primary">Create Account</button>
+                    <p class="auth-toggle">Already have an account? <a href="#" onclick="toggleAuth()">Login</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content (Dashboard) -->
+        <div id="main-screen" class="screen hidden">
+            <nav class="sidebar">
+                <div class="nav-logo">
+                    <i data-lucide="cloud-sun"></i>
+                    <span>Smart Outfit</span>
+                </div>
+                <ul class="nav-links">
+                    <li class="active" onclick="showPage('dashboard')">
+                        <i data-lucide="layout-dashboard"></i> <span>Dashboard</span>
+                    </li>
+                    <li onclick="showPage('wardrobe')">
+                        <i data-lucide="shirt"></i> <span>My Wardrobe</span>
+                    </li>
+                    <li onclick="showPage('add-clothing')">
+                        <i data-lucide="plus-circle"></i> <span>Add Clothing</span>
+                    </li>
+                </ul>
+                <div class="nav-footer">
+                    <button onclick="handleLogout()" class="btn-logout">
+                        <i data-lucide="log-out"></i> <span>Logout</span>
+                    </button>
+                </div>
+            </nav>
+
+            <main class="content">
+                <header class="content-header">
+                    <h1 id="page-title">Dashboard</h1>
+                    <div id="user-info" class="user-badge">
+                        <span id="user-name">User Name</span>
+                        <div class="avatar"></div>
+                    </div>
+                </header>
+
+                <div id="dashboard-page" class="page-view">
+                    <div class="stats-grid">
+                        <div class="stat-card weather-card">
+                            <h3>Current Weather</h3>
+                            <div class="weather-info">
+                                <div class="temp-display">
+                                    <span id="current-temp">--</span>°C
+                                </div>
+                                <div class="condition-display">
+                                    <span id="current-condition">...</span>
+                                    <span id="current-city">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-section">
+                        <h2>Today's Recommended Outfit</h2>
+                        <div id="outfit-grid" class="clothing-grid">
+                            <!-- Recommendations will be injected here -->
+                            <div class="empty-state">Add some clothes to see recommendations!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="wardrobe-page" class="page-view hidden">
+                    <div class="header-action">
+                        <h2>Personal Collection</h2>
+                        <button onclick="showPage('add-clothing')" class="btn-secondary">Add New Item</button>
+                    </div>
+                    <div id="wardrobe-items" class="clothing-grid">
+                        <!-- Wardrobe items will be injected here -->
+                    </div>
+                </div>
+
+                <div id="add-clothing-page" class="page-view hidden">
+                    <div class="form-container">
+                        <h2>Add New Clothing</h2>
+                        <div class="clothing-form">
+                            <div class="form-group">
+                                <label>Item Name</label>
+                                <input type="text" id="cloth-name" placeholder="e.g. Blue Denim Jacket">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select id="cloth-category">
+                                        <option value="Upper">Upper (Shirt/T-shirt)</option>
+                                        <option value="Lower">Lower (Pants/Jeans)</option>
+                                        <option value="Outerwear">Outerwear (Jacket/Coat)</option>
+                                        <option value="Footwear">Footwear (Shoes)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Thickness</label>
+                                    <select id="cloth-thickness">
+                                        <option value="Thin">Thin</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Thick">Thick</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Min Temp (°C)</label>
+                                    <input type="number" id="cloth-min-temp" value="10">
+                                </div>
+                                <div class="form-group">
+                                    <label>Max Temp (°C)</label>
+                                    <input type="number" id="cloth-max-temp" value="25">
+                                </div>
+                            </div>
+                            <button onclick="saveClothing()" class="btn-primary">Save Item</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
