@@ -3,6 +3,7 @@
 [![Powered by FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Frontend Vanilla](https://img.shields.io/badge/Frontend-Vanilla_JS/CSS/HTML-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Database SQLite](https://img.shields.io/badge/Database-SQLite-003B57?style=flat&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Managed by UV](https://img.shields.io/badge/Manager-UV-FF5F00?style=flat&logo=bolt&logoColor=white)](https://docs.astral.sh/uv/)
 
 **Smart Outfit** is a full-stack, production-ready web application designed to simplify daily decision-making by recommending the optimal outfit based on a user’s personal wardrobe and real-time (or simulated) weather conditions. Built with a focus on clean architecture and scalable backend practices, it serves as a robust demonstration of modern web engineering.
 
@@ -42,18 +43,24 @@ The project adheres to a strict separation of concerns, ensuring maintainability
 - **Python 3.9 - 3.12** installed.
 - Access to a terminal (PowerShell or Command Prompt).
 
-### 2. Backend & Virtual Environment
+# 2. Environment & Dependency Setup
+This project uses **[uv](https://docs.astral.sh/uv/)**, an extremely fast Python package manager, to handle dependencies and virtual environments.
+
 From the project root directory:
 ```powershell
-# Create virtual environment inside backend folder
-python -m venv backend/venv
+# Install 'uv' globally (if not already installed)
+pip install uv
 
-# Activate the virtual environment
-.\backend\venv\Scripts\activate
+# Create a fast virtual environment and install dependencies
+uv venv
+uv pip install -r requirements.txt
 
-# Install dependencies
-pip install -r requirements.txt
+# Activate the environment
+.\.venv\Scripts\activate
 ```
+
+> [!TIP]
+> **Why UV?** `uv` is written in Rust and is typically 10-100x faster than standard `pip`. It provides a more stable experience when working with newer Python versions like 3.14. However, you can still use `pip install -r requirements.txt` if you prefer.
 
 ### 3. Application Startup
 The project includes a root-level proxy for convenience:
