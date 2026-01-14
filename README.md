@@ -82,14 +82,6 @@ For demonstration stability and recruiter review, the weather service currently 
 
 ---
 
-## 📸 Screenshots
-*(Add your project screenshots here to wow recruiters!)*
-
-| Login Screen | Dashboard | Wardrobe Management |
-| :--- | :--- | :--- |
-| ![Login Placeholder](https://via.placeholder.com/300x200?text=Login+UI) | ![Dashboard Placeholder](https://via.placeholder.com/300x200?text=Dashboard+UI) | ![Wardrobe Placeholder](https://via.placeholder.com/300x200?text=Wardrobe+Management) |
-
----
 
 ## 📈 Future Improvements
 
