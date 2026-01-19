@@ -74,13 +74,7 @@ python -m http.server 3000 --directory frontend
 
 ---
 
-## 🌤️ Weather Integration Note
 
-For demonstration stability and recruiter review, the weather service currently defaults to a **Mocked Environment (15°C, Cloudy)**. 
-- **Why?** This ensures the "Outfit Logic" is always testable without relying on external API rate limits or fluctuating real-time temperatures that might not trigger all clothing categories.
-- **API Ready**: To enable live data, simply provide an `OPENWEATHER_API_KEY` in the `.env` file and toggle the service configuration.
-
----
 
 
 ## 📈 Future Improvements
@@ -92,8 +86,4 @@ For demonstration stability and recruiter review, the weather service currently 
 
 ---
 
-## 📝 License
-Distributed under the MIT License. See `LICENSE` for more information.
 
----
-*Created for portfolio demonstration by [Your Name]. Feel free to connect on [LinkedIn]!*
